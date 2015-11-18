@@ -1172,7 +1172,7 @@ class CSSParser(object):
             rexpression = self.re_string
         result = rexpression.match(src)
         if result:
-            strres = filter(None, result.groups())
+            strres = list(filter(None, result.groups()))
             if strres:
                 try:
                     strres = strres[0]
