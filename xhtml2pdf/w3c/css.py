@@ -272,6 +272,9 @@ class CSSSelectorBase(object):
             return object.__hash__(self)
         return self._hash
 
+    def __lt__(self, other):
+        return hash(self) < hash(other)
+
 
     def getNSPrefix(self):
         return self.completeName[0]
