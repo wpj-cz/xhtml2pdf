@@ -582,7 +582,7 @@ class pisaFileObject:
                 #mimetype = getMimeType(path)
 
                 # Using HTTPLIB
-                server, path = urllib.splithost(uri[uri.find("//"):])
+                server, path = urllib.parse.splithost(uri[uri.find("//"):])
                 if uri.startswith("https://"):
                     conn = httplib.HTTPSConnection(server)
                 else:
