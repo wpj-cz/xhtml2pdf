@@ -666,7 +666,7 @@ class PmlParagraph(Paragraph, PmlMaxHeightMixIn):
             # We need width and border style to be able to draw a border
             if width and getBorderStyle(bstyle):
                 # If no color for border is given, the text color is used (like defined by W3C)
-                if color is None:
+                if not color:
                     color = style.textColor
                     # print "Border", bstyle, width, color
                 if color is not None:
