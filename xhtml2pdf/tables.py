@@ -183,6 +183,17 @@ class pisaTagTABLE(pisaTag):
         for i, row in enumerate(data):
             data[i] += [''] * (maxcols - len(row))
 
+        cols_with_no_width = [
+            tup for tup in enumerate(tdata.colw) if tup[1] is None or tup[1] == 0.0]
+
+        if cols_with_no_width:  # any col width not defined
+            log.debug(list(enumerate(tdata.colw)))
+            fair_division = str(100 / float(len(cols_with_no_width))) + '%'
+            log.debug("Fair division: {}".format(fair_division))
+            for i, _ in cols_with_no_width:
+                log.debug("Setting {} to {}".format(i, fair_division))
+                tdata.colw[i] = fair_division
+
         log.debug("Col widths: {}".format(list(tdata.colw)))
         if tdata.data:
             # log.debug("Table styles %r", tdata.styles)
@@ -301,8 +312,7 @@ class pisaTagTD(pisaTag):
                 else:
                     # Child nodes are present, we cannot do anything about the
                     # width except set it externally.
-                    if self.tag == 'th':
-                        tdata.colw[col] = "100%"
+                    pass
 
         # Calculate heights
         if row + 1 > len(tdata.rowh):
