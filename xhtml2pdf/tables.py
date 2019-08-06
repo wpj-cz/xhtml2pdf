@@ -301,7 +301,8 @@ class pisaTagTD(pisaTag):
                 else:
                     # Child nodes are present, we cannot do anything about the
                     # width except set it externally.
-                    pass
+                    if self.tag == 'th':
+                        tdata.colw[col] = "100%"
 
         # Calculate heights
         if row + 1 > len(tdata.rowh):
